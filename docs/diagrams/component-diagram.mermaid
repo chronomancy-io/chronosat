@@ -1,0 +1,26 @@
+graph TB
+    subgraph input["Input"]
+        cnf["CNF Formula<br/>clauses"]
+        assign["Assignment<br/>variable values"]
+    end
+
+    subgraph cde["CDE Transform"]
+        encode["Clause Encoder<br/>literal → coefficient"]
+        matrix["Constraint Matrix<br/>m × k sparse"]
+        point["Assignment Vector<br/>n-dimensional point"]
+    end
+
+    subgraph verify["Verification"]
+        eval["Literal Evaluator<br/>with negation"]
+        check["Clause Checker<br/>sum ≥ 1"]
+        sat["SAT Decision<br/>all clauses pass"]
+    end
+
+    cnf --> encode
+    encode --> matrix
+    assign --> point
+    matrix --> eval
+    point --> eval
+    eval --> check
+    check --> sat
+

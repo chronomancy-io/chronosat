@@ -1,0 +1,22 @@
+schema_version: "1.0.0"
+repository:
+  name: "chronosat"
+  type: "tool"
+  language: "6502 Assembly"
+  cde_compliant: true
+  mss_version: "1.0.0"
+
+standards:
+  ci_workflow: ".github/workflows/ci.yml"
+  license: "MIT"
+  code_style: "inline comments (1 per 3-5 LOC)"
+  documentation: "README.md + inline comments"
+
+build:
+  primary_command: "make"
+  test_command: "make test"
+
+quality:
+  linting: false
+  security_scan: false
+  coverage_target: null

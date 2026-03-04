@@ -1,0 +1,14 @@
+graph LR
+    subgraph "ChronoForth Memory"
+        ZP["Zero Page<br/>$00-$FF"]
+        DICT["Dictionary<br/>$0801+"]
+        ASSIGN["Assignment Array<br/>n bytes"]
+        VARS["Clause Storage<br/>m×k×2 bytes"]
+        FREE["Free Space"]
+    end
+
+    ZP --> DICT
+    DICT --> ASSIGN
+    ASSIGN --> VARS
+    VARS --> FREE
+

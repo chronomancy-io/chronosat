@@ -1,0 +1,24 @@
+flowchart LR
+    subgraph init["Initialization"]
+        gen["gen-clauses"]
+        fill["fill assign"]
+    end
+
+    subgraph verify["Verification Loop"]
+        loop["FOR i = 0 to m-1"]
+        chk["chk(i)"]
+        decide["pass?"]
+    end
+
+    subgraph output["Result"]
+        sat["SATISFIABLE"]
+        unsat["UNSATISFIABLE"]
+    end
+
+    gen --> loop
+    fill --> loop
+    loop --> chk
+    chk --> decide
+    decide -->|"all pass"| sat
+    decide -->|"any fail"| unsat
+

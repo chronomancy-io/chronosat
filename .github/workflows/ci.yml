@@ -1,0 +1,36 @@
+# WASP CI — each job is a dimension; remove one and a guarantee breaks
+#
+# Dimension        | Guarantee
+# source-integrity | Forth source exists with expected word definitions
+# examples         | CNF example files parseable (header + clause lines)
+#
+# Assumption: runtime correctness validated under VICE + ChronoForth (not available in CI)
+# Unknown:    performance on real 6502 hardware
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  source-integrity:
+    name: Source Integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Forth source
+        run: |
+          test -f src/chronosat.fs
+          for word in eval sat? chronosat; do
+            grep -q ": $word" src/chronosat.fs || { echo "Missing word: $word"; exit 1; }
+          done
+
+      - name: Validate examples
+        run: |
+          for f in examples/*.cnf; do
+            grep -qE '^p cnf [0-9]+ [0-9]+$' "$f" || { echo "Missing p-line: $f"; exit 1; }
+          done

@@ -1,0 +1,13 @@
+graph TD
+    subgraph "n-Dimensional Space"
+        hypercube["Unit Hypercube<br/>[0,1]ⁿ"]
+        vertices["2ⁿ Vertices<br/>(assignments)"]
+        polytope["Constraint Polytope<br/>(satisfying region)"]
+        point["Test Point<br/>(given assignment)"]
+    end
+
+    hypercube --> vertices
+    polytope --> point
+    point -->|"inside?"| SAT["SAT"]
+    point -->|"outside?"| UNSAT["UNSAT"]
+

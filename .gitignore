@@ -1,0 +1,27 @@
+# Build outputs
+*.d64
+*.prg
+*.pet
+
+# LaTeX
+*.aux
+*.log
+*.pdf
+*.out
+*.toc
+*.synctex.gz
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Backup files
+*.bak
+*.o
+*.d81
+vice.log
+*.bin
